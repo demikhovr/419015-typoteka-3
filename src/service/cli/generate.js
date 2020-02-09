@@ -93,7 +93,7 @@ module.exports = {
     const publications = generatePublications(countPublication);
     const content = JSON.stringify(publications);
 
-    fs.writeFile(`${FILE_NAME}`, content, (err) => {
+    fs.writeFile(FILE_NAME, content, (err) => {
       if (err) {
         return console.error(`Can't write data to file...`);
       }
