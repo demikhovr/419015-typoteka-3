@@ -1,0 +1,17 @@
+extends ../layout
+include ../blocks/header
+include ../blocks/myPublication
+
+block title
+  - const title = 'Типотека'
+block content
+  .wrapper.wrapper--nobackground
+    +header('admin')
+    main.main-page.main-page--padding
+      section.main-page__notes.notes
+        h1.notes__title Мои записи
+        ul.notes__list
+          each publication, i in publications
+            li.notes__list-item(class=i === publications.length - 1 && 'notes__list-item--last')
+              +myPublication(publication)
+    include ../blocks/footer

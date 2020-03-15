@@ -1,0 +1,18 @@
+extends ../layout
+include ../blocks/header
+include ../blocks/comment
+
+block title
+  - const title = 'Типотека'
+block content
+  .wrapper.wrapper--nobackground
+    +header('admin')
+    main.main-page.main-page--padding
+      section.main-page__publication.publication
+        h1.publication__title Комментарии
+        ul.publication__list
+          each comment, i in comments
+            li.publication__list-item(class=i === comments.length - 1 && 'publication__list-item--last')
+              +comment(comment)
+
+    include ../blocks/footer

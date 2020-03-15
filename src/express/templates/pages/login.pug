@@ -1,0 +1,13 @@
+extends ../layout
+include ../blocks/sign-in-popup
+
+block title
+  - const title = 'login'
+block content
+  .wrapper
+    +header()
+    main
+      h1.visually-hidden Авторизация пользователя
+      +signInPopup(true, validation)
+    include ../blocks/footer
+    script(src="js/main.js")

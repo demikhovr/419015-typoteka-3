@@ -1,0 +1,7 @@
+mixin themes(themes, activeIndex)
+  ul.themes
+    each theme, i in themes
+      li.themes__item
+        a.themes__item-link(class=i === activeIndex && 'themes__item-link--active' href=theme.href)
+          | #{theme.name}
+          sup= theme.amount

@@ -1,0 +1,5 @@
+mixin myPublication(data)
+    time.notes__item-time(datetime=data.datetime)= data.formattedDatetime
+    a.notes__item-text(href=data.href)= data.title
+    button.notes__button.button.button--close-item(type='button')
+      span.visually-hidden Закрыть строку списка

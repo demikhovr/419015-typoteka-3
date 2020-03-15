@@ -1,0 +1,7 @@
+mixin category(category, index)
+  form(action='#', method='POST')
+    input(id=`#modify-form-category-${index}` type='text', name='category', value=category)
+    label(for=`modify-form-category-${index}`)
+      span.visually-hidden Редактировать категорию
+    button.category__button.button.button--category(type='submit') Сохранить
+    button.category__button.button.button--category(type='button') Удалить

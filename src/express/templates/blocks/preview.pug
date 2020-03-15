@@ -1,0 +1,16 @@
+mixin preview(data)
+  ul.preview__breadcrumbs
+    each category in data.categories
+      li.preview__breadcrumbs-item
+        a.preview__breadcrumbs-link(href='#')= category
+  if data.image
+    .preview__background
+      img.preview__background-image(src=data.image, width='460', height='240', srcset=`${data.image} 1x, ${data.image.replace('@1x', '@2x')} 2x`, alt=data.imageAlt)
+  time.preview__time(datetime=data.datetime)= data.formattedDatetime
+  h3.preview__name
+    a.preview__name-link(href='#')= data.title
+  p.preview__text= data.text
+  a.preview__comment(href='#')
+    | Комментарии
+    span.preview__cloud
+    b.preview__comment-count &nbsp;#{data.commentsCount}

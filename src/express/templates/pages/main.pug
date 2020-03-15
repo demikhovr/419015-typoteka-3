@@ -1,0 +1,78 @@
+extends ../layout
+include ../blocks/header
+include ../blocks/themes
+include ../blocks/preview
+
+block title
+  - const title = 'Типотека'
+block content
+  .wrapper
+    +header()
+    main.main-page
+      h1.visually-hidden Главная страница личного блога Типотека
+      p
+        | Это приветственный текст, который владелец блога может выбрать, чтобы описать себя 👏
+      if !themes.length && !hots.length && !comments.length
+        .main-page__empty-wrapper
+          p.main-page__empty-text Здесь пока пусто!
+      else
+        section.main-page__theme-list
+          h2.visually-hidden Список тем
+          +themes(themes)
+        .main-page__section-flex
+          section.main-page__hot.hot
+            if hots.length
+              h2.hot__name
+                | Самое обсуждаемое
+                span.hot__icon.hot__icon--fire
+              ul.hot__list
+                each hot, i in hots
+                  li.hot__list-item(class=i === hots.length - 1 && 'hot__list-item--end')
+                    a.hot__list-link(href=href)
+                    | #{hot.title}
+                    sup.hot__link-sup= hot.amount
+            else
+              h2.hot__name.hot__name--empty
+                | Самое обсуждаемое
+                span.hot__icon.hot__icon--fire
+              p.hot__empty Здесь пока ничего нет...
+          section.main-page__last.last
+            if comments.length
+              h2.last__name
+                | Последние комментарии
+                span.last__icon.last__icon--cloud
+              ul.last__list
+                each comment, i in comments
+                  li.last__list-item(class=i === comments.length - 1 && 'last__list-item--end')
+                    img.last__list-image(src=comment.image, width='20', height='20', alt='Аватар пользователя')
+                    b.last__list-name= comment.name
+                    a.last__list-link(href=comment.href)= comment.text
+            else
+              h2.last__name
+                | Последние комментарии
+                span.last__icon.last__icon--cloud
+              p.last__empty Здесь пока ничего нет...
+        section.main-page__list.preview
+          h2.visually-hidden Список превью статей
+          ul.preview__list
+            each preview in previews
+              li.preview__item(class=!preview.image && 'preview__item--noimage')
+                +preview(preview)
+          if isAdmin
+            .preview__toggle-wrapper
+              ul.preview__pagination.pagination
+                li
+                  a.pagination__button.button.button--backwards.button--disabled(href='#', aria-label='Страница назад') Назад
+                li.pagination__item.pagination__item--active
+                  a(href='#') 1
+                li.pagination__item
+                  a(href='#') 2
+                li.pagination__item
+                  a(href='#') 3
+                li.pagination__item
+                  a(href='#') 4
+                li.pagination__item
+                  a(href='#') 5
+                li
+                  a.pagination__button.button.button--forward(href='#', aria-label='Страница вперед') Вперед
+    include ../blocks/footer

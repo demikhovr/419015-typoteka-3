@@ -1,0 +1,14 @@
+extends ../layout
+include ../blocks/header
+
+block title
+  - const title = 'Типотека'
+block content
+  .wrapper-color
+    +header(null, 404)
+    main
+      h1.visually-hidden Ошибка 404
+      section.error
+        h2.error__title.title.title--big Похоже ошиблись адресом
+        a.error__link.text.text--big(href='main.html') Вернуться на главную
+    include ../blocks/footer
