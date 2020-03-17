@@ -1,0 +1,76 @@
+extends ../layout
+include ../blocks/header
+
+block title
+  - const title = 'post-page'
+block content
+  .wrapper
+    +header()
+    main
+      section.post
+        h1.visually-hidden Пост
+        section.post__content
+          h2.visually-hidden Основное содержание
+          .post__wrapper
+            .post__head
+              a.post__backwards.button.button--backwards(href='#') Назад
+              time.post__date(datetime=datetime)= formattedDatetime
+              h2.post__title.title.title--main= title
+              ul.post__themes.themes
+                each theme in themes
+                  li.themes__item
+                    a.themes__item-link(href='#')
+                      | #{theme.name}
+                      sup= theme.amount
+                    button.themes__remove-btn(type='button') Удалить категорию
+            if image
+              .post__picture
+                img(src=image, alt=imageAlt)
+            .post__text
+              h3 Бирюзовое доверие
+              p
+                | У Apple иногда попадаются интерфейсы, за которые создателей хочется сильно
+                | поругать
+                | — к примеру интерфейс
+                | публикации приложения в AppStore, для которого я уже неделю восстановливаю свой аккаунт разработчика.
+              p
+                | Или интерфейс подключения AirPods на макбуке. Чтобы переключить наушники между
+                | телефоном и компьютером,
+                | нужно сначала нажать на значок звука, затем дождаться, когда в списке устройств появятся наушники, потом
+                | нажать на них и дождаться, пока случится вся магия подключения. Иногда по загадочным причинам магия не
+                | случается, и операцию нужно повторить, выполняя все те же клики-ожидания-клики — бесит.
+        .post__wrapper.post__wrapper--comments
+          section.post__comments.comments
+            if comments.length
+              h2.comments__title.title.title--middle Комментарии
+              ul.comments__list
+                each comment in comments
+                  li.comments__comment
+                    .comments__avatar.avatar
+                      img(src=comment.avatar, alt='аватар пользователя')
+                    .comments__text
+                      .comments__head
+                        p #{comment.author} •
+                        time.comments__date(datetime=comment.datetime)= comment.formattedDatetime
+                      p.comments__message= comment.message
+              .comments__footer.comments__footer--user
+                form(action='#', method='POST')
+                  .comments__avatar.avatar
+                    img(src='img/avatar-2.png', alt='аватар пользователя')
+                  label
+                    textarea(rows='1', placeholder='Присоединиться к обсуждению')
+                  button.comments__button.button.button--colored(type='submit') Опубликовать
+                p.comments__error Сообщение не может быть пустым, напишите что-нибудь!
+            else
+              h2.comments__title.title.title--middle Комментарии отсутствуют
+              .comments__footer.comments__footer--visitor
+                button.comments__button.button.button--colored(type='submit') Войти
+                .comments__registration
+                  p.text.text--signature
+                    b.title.title--small Регистрация
+                    | Чтобы присоединиться к
+                    | переписке
+                    | нужно зарегистрироваться
+    include ../blocks/footer
+  script(src='js/main.js')
+

@@ -1,0 +1,9 @@
+mixin comment(data)
+  .publication__header
+    img.publication__list-image(src=data.image, width='20', height='20', alt='Аватар пользователя')
+    b.publication__list-name= data.author
+    time.publication__item-time(datetime=data.datetime)= data.formattedDatetime
+  a.publication__item-text(href=data.href)= data.title
+  p.publication__text-strong= data.description
+  button.publication__button.button.button--close-item(type='button')
+    span.visually-hidden Закрыть строку списка

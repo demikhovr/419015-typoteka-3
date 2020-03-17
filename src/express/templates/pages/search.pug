@@ -1,0 +1,26 @@
+extends ../layout
+include ../blocks/header
+
+block title
+  - const title = 'Типотека'
+block content
+  .wrapper-color
+    +header('admin')
+    main
+      section.search-page
+        .search-page__wrapper(class=results && !results.length && 'search-page__wrapper--empty')
+          h1 Поиск
+          .search.search-page__form
+            form(action='#', method='get')
+              label
+                input(type='text', placeholder='Что ищем?' value=string)
+              button.search__button.button.button--transparent(type='submit') Найти
+            if results && results.length
+              - const regexp = new RegExp(`(${string})`)
+              each result in results
+                .search__result
+                  time.search__date(datetime=result.datetime)= result.formattedDatetime
+                  a.search__link !{result.content.replace(regexp, '<b>$1</b>')}
+          if results && !results.length
+            p.search-page__empty Ничего не нашлось
+    include ../blocks/footer
