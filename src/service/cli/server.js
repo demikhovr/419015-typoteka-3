@@ -33,7 +33,7 @@ module.exports = {
 
     app.use((req, res) => res.status(HttpCode.NOT_FOUND).send(NOT_FOUND_MESSAGE));
 
-    app.listen(DEFAULT_PORT, (err) => {
+    app.listen(port, (err) => {
       if (err) {
         return console.error(chalk.red(`Ошибка при создании сервера`, err));
       }
