@@ -47,7 +47,7 @@ const generateComments = (count, comments) => (
 const generatePublications = ({count, titles, sentences, categories, comments}) => (
   Array(count).fill({}).map(() => ({
     title: titles[getRandomInt(0, titles.length - 1)],
-    createdData: generateCreatedDate(),
+    createdDate: generateCreatedDate(),
     announce: shuffle(sentences).slice(0, MAX_ANNOUNCES).join(` `),
     fullText: shuffle(sentences).slice(0, getRandomInt(1, sentences.length - 1)).join(` `),
     category: shuffle(categories).slice(0, getRandomInt(1, categories.length - 1)),
