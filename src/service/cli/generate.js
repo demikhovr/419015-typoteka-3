@@ -2,18 +2,21 @@
 
 const fs = require(`fs`).promises;
 const chalk = require(`chalk`);
-const {ExitCode} = require(`../../constants`);
+const {nanoid} = require(`nanoid`);
 const {getRandomInt, shuffle} = require(`../../util`);
+const {ExitCode, MAX_ID_LENGTH} = require(`../../constants`);
 
 const FILE_TITLES_PATH = `./data/titles.txt`;
 const FILE_SENTENCES_PATH = `./data/sentences.txt`;
 const FILE_CATEGORIES_PATH = `./data/categories.txt`;
+const FILE_COMMENTS_PATH = `./data/comments.txt`;
 const FILE_OUTPUT_PATH = `mocks.json`;
 
 const DEFAULT_COUNT = 1;
 const MAX_COUNT = 1000;
 const MAX_ANNOUNCES = 5;
 const MONTH_RANGE = 3;
+const MAX_COMMENTS = 4;
 
 const readContent = async (filePath) => {
   try {
@@ -34,13 +37,22 @@ const generateCreatedDate = () => {
   return `${date} ${time.split(`.`)[0]}`;
 };
 
-const generatePublications = ({count, titles, sentences, categories}) => (
+const generateComments = (count, comments) => (
+  Array(count).fill({}).map(() => ({
+    id: nanoid(MAX_ID_LENGTH),
+    text: shuffle(comments).slice(0, getRandomInt(1, 3)).join(` `),
+  }))
+);
+
+const generatePublications = ({count, titles, sentences, categories, comments}) => (
   Array(count).fill({}).map(() => ({
     title: titles[getRandomInt(0, titles.length - 1)],
     createdData: generateCreatedDate(),
     announce: shuffle(sentences).slice(0, MAX_ANNOUNCES).join(` `),
     fullText: shuffle(sentences).slice(0, getRandomInt(1, sentences.length - 1)).join(` `),
     category: shuffle(categories).slice(0, getRandomInt(1, categories.length - 1)),
+    comments: generateComments(getRandomInt(1, MAX_COMMENTS), comments),
+    id: nanoid(MAX_ID_LENGTH),
   }))
 );
 
@@ -51,12 +63,14 @@ module.exports = {
       FILE_TITLES_PATH,
       FILE_SENTENCES_PATH,
       FILE_CATEGORIES_PATH,
+      FILE_COMMENTS_PATH,
     ].map(readContent);
 
     const [
       titles,
       sentences,
       categories,
+      comments,
     ] = await Promise.all(promises);
 
     const [countArg] = args;
@@ -72,6 +86,7 @@ module.exports = {
       titles,
       sentences,
       categories,
+      comments,
     });
 
     const content = JSON.stringify(publications);
