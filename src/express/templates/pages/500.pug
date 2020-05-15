@@ -1,5 +1,5 @@
 extends ../layout
-include ../blocks/header
+include ../partials/header
 
 block title
   - const title = 'Типотека'
@@ -14,4 +14,4 @@ block content
           | Причин может быть много: сервер не выдержал нагрузку или в коде ошибка.
           | Попробуйте повторить попытку позже.
         a.error__link.text.text--big(href='main.html') Вернуться на главную
-    include ../blocks/footer
+    include ../partials/footer

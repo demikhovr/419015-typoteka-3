@@ -15,7 +15,7 @@ articlesRouter.get(`/:id`, (req, res) => {
     comments: [],
     datetime: `2019-03-21T20:33`,
     formattedDatetime: `21.03.2019, 20:33`,
-    image: `img/sea-fullsize@1x.jpg`,
+    image: `/img/sea-fullsize@1x.jpg`,
     imageAlt: `пейзаж море, скалы, пляж`,
     themes: [
       {

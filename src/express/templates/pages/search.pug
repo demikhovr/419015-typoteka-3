@@ -1,5 +1,5 @@
 extends ../layout
-include ../blocks/header
+include ../partials/header
 
 block title
   - const title = 'Типотека'
@@ -23,4 +23,4 @@ block content
                   a.search__link !{result.content.replace(regexp, '<b>$1</b>')}
           if results && !results.length
             p.search-page__empty Ничего не нашлось
-    include ../blocks/footer
+    include ../partials/footer

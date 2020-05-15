@@ -1,4 +1,4 @@
-include ../blocks/header
+include ./header
 
 mixin signInPopup(isSignIn, validation)
   section.modal
@@ -37,7 +37,7 @@ mixin signInPopup(isSignIn, validation)
                   li.form__error= error
           .form__image-loader
             a.form__avatar.avatar
-              img(src='img/icons/smile.svg', alt='аватар пользователя')
+              img(src='/img/icons/smile.svg', alt='аватар пользователя')
             label
               input.visually-hidden(type='file')
               | Загрузить фото профиля

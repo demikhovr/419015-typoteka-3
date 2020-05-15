@@ -1,5 +1,5 @@
 extends ../layout
-include ../blocks/header
+include ../partials/header
 
 block title
   - const title = 'post-page'
@@ -56,7 +56,7 @@ block content
               .comments__footer.comments__footer--user
                 form(action='#', method='POST')
                   .comments__avatar.avatar
-                    img(src='img/avatar-2.png', alt='аватар пользователя')
+                    img(src='/img/avatar-2.png', alt='аватар пользователя')
                   label
                     textarea(rows='1', placeholder='Присоединиться к обсуждению')
                   button.comments__button.button.button--colored(type='submit') Опубликовать
@@ -71,6 +71,6 @@ block content
                     | Чтобы присоединиться к
                     | переписке
                     | нужно зарегистрироваться
-    include ../blocks/footer
-  script(src='js/main.js')
+    include ../partials/footer
+  script(src='/js/main.js')
 

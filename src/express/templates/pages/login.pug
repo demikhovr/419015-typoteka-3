@@ -1,5 +1,5 @@
 extends ../layout
-include ../blocks/sign-in-popup
+include ../partials/sign-in-popup
 
 block title
   - const title = 'login'
@@ -9,5 +9,5 @@ block content
     main
       h1.visually-hidden Авторизация пользователя
       +signInPopup(true, validation)
-    include ../blocks/footer
-    script(src="js/main.js")
+    include ../partials/footer
+    script(src="/js/main.js")

@@ -1,6 +1,6 @@
 extends ../layout
-include ../blocks/header
-include ../blocks/category
+include ../partials/header
+include ../partials/category
 
 block title
   - const title = 'Типотека'
@@ -20,4 +20,4 @@ block content
           each category, i in categories
             li.category__list-item(class=i === categories.length - 1 && 'category__list-item--last')
               +category(category, i + 1)
-    include ../blocks/footer
+    include ../partials/footer
