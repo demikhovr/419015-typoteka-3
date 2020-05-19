@@ -1,7 +1,7 @@
 extends ../layout
-include ../blocks/header
-include ../blocks/themes
-include ../blocks/preview
+include ../partials/header
+include ../partials/themes
+include ../partials/preview
 
 block title
   - const title = 'Типотека'
@@ -75,4 +75,4 @@ block content
                   a(href='#') 5
                 li
                   a.pagination__button.button.button--forward(href='#', aria-label='Страница вперед') Вперед
-    include ../blocks/footer
+    include ../partials/footer

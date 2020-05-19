@@ -1,5 +1,5 @@
 extends ../layout
-include ../blocks/header
+include ../partials/header
 
 block title
   - const title = 'new publication'
@@ -50,7 +50,7 @@ block content
                     label
                       textarea(rows='5', placeholder='Полный текст публикации')= text
         .modal__overlay
-  script(src='js/vendor.js')
-  script(src='js/main.js')
+  script(src='/js/vendor.js')
+  script(src='/js/main.js')
 
 

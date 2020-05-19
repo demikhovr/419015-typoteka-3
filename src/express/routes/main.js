@@ -10,19 +10,19 @@ mainRouter.get([`/`, `/index(.html)?`, `/main(.html)?`], (req, res) => {
   const pageContent = {
     comments: [
       {
-        image: `img/avatar-small-1.png`,
+        image: `/img/avatar-small-1.png`,
         href: `#`,
         name: `Анна Артамонова`,
         text: `Сервис аренды жилья Airbnb стал глобальным партнером Международного олимпийского комитета (МОК) на девять лет, в течение которых пройдет пять Олимпиад, в том числе в Токио в 2020 году.`,
       },
       {
-        image: `img/avatar-small-2.png`,
+        image: `/img/avatar-small-2.png`,
         href: `#`,
         name: `Александр Петров`,
         text: `Главреды «Дождя», Forbes и других СМИ попросили Роскомнадзор разъяснить штрафы за ссылки на сайты с матом`,
       },
       {
-        image: `img/avatar-small-3.png`,
+        image: `/img/avatar-small-3.png`,
         href: `#`,
         name: `Игорь Шманский`,
         text: `Что-то все электрокары в последнее время все на одно лицо делаются))`,
